@@ -1,0 +1,24 @@
+backend:
+  name: github
+  # EDIT: Change this to your actual username and repo (e.g., yourname/lykke)
+  repo: KareemSameh123/Lykke1
+  branch: main
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "store"
+    label: "Store Dashboard"
+    files:
+      - label: "Product List"
+        name: "products"
+        file: "products.json"
+        fields:
+          - label: "Your Products"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Price (e.g. EGP 1,200)", name: "price", widget: "string"}
+              - {label: "Product Image", name: "image", widget: "image"}
