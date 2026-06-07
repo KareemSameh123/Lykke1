@@ -22,7 +22,7 @@
         body { margin: 0; font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: var(--text-color); }
         
-        /* --- NEW HEADER & HAMBURGER MENU --- */
+        /* --- HEADER & HAMBURGER MENU --- */
         header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 100; }
         
         .hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; z-index: 1000; }
@@ -32,10 +32,9 @@
         .logo-text { font-family: var(--font-headers); font-size: 36px; font-weight: 800; letter-spacing: 10px; text-transform: uppercase; margin-bottom: -5px; }
         .logo-subtext { font-family: var(--font-body); font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #555; }
 
-        /* Empty div to balance flexbox */
         .header-spacer { width: 50px; } 
 
-        /* --- NEW SIDEBAR MENU --- */
+        /* --- SIDEBAR MENU --- */
         .side-menu { position: fixed; top: 0; left: -350px; width: 300px; height: 100vh; background-color: var(--text-color); color: var(--bg-color); z-index: 999; transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1); padding: 100px 40px 40px; display: flex; flex-direction: column; gap: 30px; box-shadow: 10px 0 30px rgba(0,0,0,0.2); }
         .side-menu.open { left: 0; }
         .side-menu a { color: var(--bg-color); font-family: var(--font-headers); font-size: 24px; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; }
@@ -44,22 +43,14 @@
         .side-menu .small-links a { font-family: var(--font-body); font-size: 14px; letter-spacing: 1px; color: #888; }
         .side-menu .small-links a:hover { color: var(--bg-color); }
         
-        /* Overlay to darken background when menu is open */
         .menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 998; }
         .menu-overlay.open { opacity: 1; visibility: visible; }
 
-        /* --- HERO SECTION WITH DROPDOWN ANIMATION --- */
+        /* --- HERO SECTION --- */
         .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
         
-        /* Animation Keyframes */
-        @keyframes dropDown {
-            0% { opacity: 0; transform: translateY(-40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes dropDown { 0% { opacity: 0; transform: translateY(-40px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
         .hero h1 { font-family: var(--font-headers); font-size: 6rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 0.9; animation: dropDown 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .hero p { font-family: var(--font-body); font-size: 1.1rem; max-width: 500px; margin: 30px 0 40px; letter-spacing: 0.5px; font-weight: 300; color: #444; opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards; }
@@ -70,10 +61,7 @@
         /* --- STREETWEAR MARQUEE TICKER --- */
         .marquee-container { width: 100%; background-color: var(--text-color); color: var(--bg-color); padding: 15px 0; overflow: hidden; white-space: nowrap; border-top: 2px solid #000; border-bottom: 2px solid #000; }
         .marquee-text { display: inline-block; font-family: var(--font-headers); font-size: 14px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; animation: scroll 20s linear infinite; }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- PRODUCTS GRID --- */
         .section-title { text-align: center; font-family: var(--font-headers); font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; margin: 100px 0 60px; }
@@ -86,22 +74,44 @@
         .product-image img { width: 100%; height: 100%; object-fit: cover; }
         
         .product-title { font-family: var(--font-headers); font-weight: 800; font-size: 1.2rem; margin-bottom: 5px; letter-spacing: 1px; text-transform: uppercase; }
-        .product-price { font-family: var(--font-body); color: #555; font-weight: 600; font-size: 1rem; margin-bottom: 20px; }
+        .product-price { font-family: var(--font-body); color: #555; font-weight: 600; font-size: 1rem; margin-bottom: 15px; }
 
-        /* Green WhatsApp Button */
-        .wa-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 28px; background-color: #25D366; color: white; font-family: var(--font-headers); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; border: none; border-radius: 2px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; width: 85%; }
-        .wa-btn:hover { background-color: #128C7E; transform: translateY(-3px); }
+        /* --- UPDATED SLEEK WHATSAPP BUTTON --- */
+        .wa-btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            padding: 12px 26px; 
+            background-color: #4BD865; /* Lighter, fresher green */
+            color: white; 
+            font-family: var(--font-body); /* Cleaner, less bulky font */
+            font-size: 11px; 
+            font-weight: 600; /* Softer text weight */
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            border: none; 
+            border-radius: 50px; /* Fully rounded pill shape */
+            cursor: pointer; 
+            transition: background-color 0.3s, transform 0.2s; 
+            width: fit-content; /* Only as wide as the text */
+            margin: 0 auto;
+        }
+        .wa-btn:hover { background-color: #3CC255; transform: translateY(-3px); }
 
         /* --- FOOTER --- */
         footer { background-color: var(--text-color); color: var(--bg-color); text-align: center; padding: 100px 20px; }
-        footer .footer-logo { font-family: var(--font-headers); font-size: 32px; font-weight: 900; letter-spacing: 8px; margin-bottom: 30px; display: block; }
+        footer .footer-logo { font-family: var(--font-headers); font-size: 32px; font-weight: 900; letter-spacing: 8px; margin-bottom: 5px; display: block; }
+        
+        /* New Footer Slogan */
+        footer .footer-slogan { font-family: var(--font-body); font-size: 12px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; color: #888; display: block; margin-bottom: 40px; }
+        
         footer a { color: var(--bg-color); margin: 0 20px; font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
         footer a:hover { color: var(--accent-color); }
         
         img { -webkit-user-drag: none; user-drag: none; }
         .loading { text-align: center; font-family: var(--font-headers); font-size: 1.2rem; letter-spacing: 2px; grid-column: 1/-1; opacity: 0.5; }
         
-        /* Scroll Animations */
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
@@ -156,6 +166,8 @@
 
     <footer id="about" class="fade-in">
         <span class="footer-logo">LYKKE</span>
+        <span class="footer-slogan">More to Lykke</span>
+        
         <div style="margin-bottom: 50px;">
             <a href="https://instagram.com/yourhandle" target="_blank">Instagram</a>
             <a href="#">TikTok</a>
@@ -165,13 +177,11 @@
     </footer>
 
     <script>
-        // --- MENU TOGGLE SCRIPT ---
         function toggleMenu() {
             document.getElementById('sideMenu').classList.toggle('open');
             document.getElementById('menuOverlay').classList.toggle('open');
         }
 
-        // --- PRODUCT LOADING SCRIPT (SVELTIA CMS) ---
         const WHATSAPP_NUMBER = "201006440815"; 
 
         async function fetchProducts() {
@@ -190,7 +200,6 @@
                     const message = encodeURIComponent(`Hi LYKKE, I would like to order the "${product.title}" for ${product.price}.`);
                     const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
-                    // Added a delayed fade-in for each product card
                     const delay = index * 0.2;
 
                     const productCard = `
@@ -201,7 +210,7 @@
                             <div class="product-title">${product.title}</div>
                             <div class="product-price">${product.price}</div>
                             <a href="${waLink}" target="_blank" class="wa-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.66-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
                                 </svg>
                                 Order via WhatsApp
@@ -211,7 +220,6 @@
                     container.innerHTML += productCard;
                 });
                 
-                // Re-trigger scroll observer for new items
                 document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
             } catch (error) {
@@ -219,7 +227,6 @@
             }
         }
 
-        // --- SCROLL ANIMATION OBSERVER ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -229,8 +236,6 @@
         }, { threshold: 0.1 });
 
         fetchProducts();
-        
-        // Security block
         document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
