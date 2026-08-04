@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | LYKKE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@500;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #F6F5F0;
+            --text-color: #1A1A1A;
+            --accent-color: #7B1113;
+            --card-bg: #FFFFFF;
+            --font-headers: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body { margin: 0; font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: var(--text-color); }
+
+        /* --- HEADER & HAMBURGER MENU --- */
+        header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 100; }
+
+        .hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; z-index: 1000; }
+        .hamburger div { width: 30px; height: 3px; background-color: var(--text-color); transition: 0.3s; }
+
+        .brand-container { position: absolute; left: 50%; transform: translateX(-50%); text-align: center; }
+        .logo-text { font-family: var(--font-headers); font-size: 36px; font-weight: 800; letter-spacing: 10px; text-transform: uppercase; margin-bottom: -5px; }
+        .logo-subtext { font-family: var(--font-body); font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #555; }
+
+        .header-spacer { width: 50px; }
+
+        /* --- SIDEBAR MENU --- */
+        .side-menu { position: fixed; top: 0; left: -350px; width: 300px; height: 100vh; background-color: var(--text-color); color: var(--bg-color); z-index: 999; transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1); padding: 100px 40px 40px; display: flex; flex-direction: column; gap: 30px; box-shadow: 10px 0 30px rgba(0,0,0,0.2); }
+        .side-menu.open { left: 0; }
+        .side-menu a { color: var(--bg-color); font-family: var(--font-headers); font-size: 24px; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; }
+        .side-menu a:hover { color: var(--accent-color); }
+        .side-menu .small-links { margin-top: auto; display: flex; flex-direction: column; gap: 15px; }
+        .side-menu .small-links a { font-family: var(--font-body); font-size: 14px; letter-spacing: 1px; color: #888; }
+        .side-menu .small-links a:hover { color: var(--bg-color); }
+
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 998; }
+        .menu-overlay.open { opacity: 1; visibility: visible; }
+
+        /* --- PAGE HERO --- */
+        .page-hero { padding: 90px 20px 60px; text-align: center; }
+        .page-hero .pretitle { display: block; font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-color); margin-bottom: 18px; }
+        .page-hero h1 { font-family: var(--font-headers); font-size: 4rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0; line-height: 1; }
+        .page-hero p { font-family: var(--font-body); font-size: 1.05rem; max-width: 560px; margin: 26px auto 0; color: #444; font-weight: 300; }
+
+        /* --- MISSION / VISION --- */
+        .statement-wrap { max-width: 1100px; margin: 40px auto 100px; padding: 0 40px; display: flex; flex-direction: column; gap: 40px; }
+
+        .statement-card { display: grid; grid-template-columns: 140px 1fr; gap: 40px; align-items: start; padding: 60px; border-radius: 4px; }
+        .statement-card.light { background-color: var(--card-bg); border: 1px solid #E2E1DA; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .statement-card.dark { background-color: var(--text-color); color: var(--bg-color); }
+
+        .statement-num { font-family: var(--font-headers); font-size: 5rem; font-weight: 900; opacity: 0.15; line-height: 1; }
+        .statement-card.light .statement-num { color: var(--text-color); }
+        .statement-card.dark .statement-num { color: var(--bg-color); }
+
+        .statement-title { font-family: var(--font-headers); font-size: 1.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 20px; }
+        .statement-card p { font-family: var(--font-body); font-size: 1.05rem; font-weight: 300; margin: 0; max-width: 640px; }
+        .statement-card.dark p { color: #D8D6CC; }
+
+        /* --- VALUES STRIP --- */
+        .values-strip { max-width: 1100px; margin: 0 auto 100px; padding: 0 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
+        .value-item h3 { font-family: var(--font-headers); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .value-item p { font-family: var(--font-body); font-size: 0.9rem; color: #555; font-weight: 300; margin: 0; }
+
+        .back-link-wrap { text-align: center; margin-bottom: 80px; }
+        .back-link { display: inline-block; padding: 16px 40px; border: 1px solid var(--text-color); font-family: var(--font-headers); font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; }
+        .back-link:hover { background-color: var(--text-color); color: var(--bg-color); }
+
+        /* --- FOOTER --- */
+        footer { background-color: var(--text-color); color: var(--bg-color); text-align: center; padding: 100px 20px; }
+        footer .footer-logo { font-family: var(--font-headers); font-size: 32px; font-weight: 900; letter-spacing: 8px; margin-bottom: 5px; display: block; }
+        footer .footer-slogan { font-family: var(--font-body); font-size: 12px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; color: #888; display: block; margin-bottom: 40px; }
+        footer a { color: var(--bg-color); margin: 0 20px; font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-color); }
+
+        .footer-menu { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 50px; }
+        .footer-menu a, .footer-menu button { color: var(--bg-color); background: none; border: none; margin: 0 20px; padding: 0; font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: color 0.3s; }
+        .footer-menu a:hover, .footer-menu button:hover { color: var(--accent-color); }
+
+        .footer-contact-wrap { position: relative; display: inline-block; }
+        .contact-popup { position: absolute; bottom: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(8px); background-color: var(--bg-color); color: var(--text-color); border-radius: 10px; padding: 18px 22px; min-width: 230px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.35); opacity: 0; visibility: hidden; transition: opacity 0.25s, transform 0.25s; z-index: 60; }
+        .contact-popup.open { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .contact-popup::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--bg-color); }
+        .contact-popup a { display: flex; align-items: center; gap: 8px; color: var(--text-color) !important; font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.5px; text-transform: none; }
+        .contact-popup a:hover { color: #3CC255 !important; }
+        .contact-popup .popup-label { font-family: var(--font-headers); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 2px; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            header { padding: 16px 20px; }
+            .hamburger div { width: 24px; }
+            .header-spacer { width: 30px; }
+
+            .logo-text { font-size: 22px; letter-spacing: 4px; margin-bottom: -3px; }
+            .logo-subtext { font-size: 8px; letter-spacing: 1.5px; }
+
+            .side-menu { width: 80%; max-width: 300px; padding: 90px 30px 30px; }
+            .side-menu a { font-size: 28px; }
+
+            .page-hero { padding: 70px 20px 40px; }
+            .page-hero h1 { font-size: 2.4rem; }
+            .page-hero p { font-size: 0.95rem; }
+
+            .statement-wrap { padding: 0 24px; gap: 24px; margin: 20px auto 70px; }
+            .statement-card { grid-template-columns: 1fr; gap: 16px; padding: 36px 28px; }
+            .statement-num { font-size: 3rem; }
+            .statement-title { font-size: 1.4rem; }
+
+            .values-strip { grid-template-columns: 1fr; padding: 0 24px; gap: 30px; margin-bottom: 70px; }
+
+            footer { padding: 70px 20px; }
+            footer .footer-logo { font-size: 24px; letter-spacing: 5px; }
+            footer a, footer button { margin: 0 10px; font-size: 12px; }
+            .footer-menu { flex-direction: column; gap: 18px; margin-bottom: 40px !important; }
+        }
+
+        @media (max-width: 400px) {
+            .logo-text { font-size: 18px; letter-spacing: 2px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="side-menu" id="sideMenu">
+        <a href="index.html#collection">Mens</a>
+        <a href="index.html#collection">Womens</a>
+        <a href="#" id="menuWhatsappBtn" target="_blank" rel="noopener">Contact Us</a>
+
+        <div class="small-links">
+            <a href="about.html">About Us</a>
+            <a href="#">Shipping Policy</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <a href="index.html" class="brand-container">
+            <div class="logo-text">LYKKE</div>
+            <div class="logo-subtext">Est. 2026 &bull; Egypt</div>
+        </a>
+
+        <div class="header-spacer"></div>
+    </header>
+
+    <section class="page-hero">
+        <span class="pretitle">Our Story</span>
+        <h1>Mission &amp; Vision</h1>
+        <p>Modern heritage, made in Egypt. Here's what drives everything we design, cut, and stitch.</p>
+    </section>
+
+    <div class="statement-wrap">
+        <div class="statement-card light">
+            <div class="statement-num">01</div>
+            <div>
+                <h2 class="statement-title">Our Mission</h2>
+                <p>To design streetwear that honors Egyptian heritage while speaking a bold, modern language — giving a new generation clothing they're proud to wear and stories they're proud to tell. Every piece we release is made with intention, built to last, and priced to be worn, not shelved.</p>
+            </div>
+        </div>
+
+        <div class="statement-card dark">
+            <div class="statement-num">02</div>
+            <div>
+                <h2 class="statement-title">Our Vision</h2>
+                <p>To become the definitive homegrown streetwear label to come out of Egypt — one that puts local craftsmanship on a global stage and proves that heritage and hype were never opposites. We see a future where LYKKE is worn far beyond where it started.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="values-strip">
+        <div class="value-item">
+            <h3>Crafted in Egypt</h3>
+            <p>Every drop is designed and produced locally, start to finish.</p>
+        </div>
+        <div class="value-item">
+            <h3>Built to Last</h3>
+            <p>Quality fabrics and construction over disposable fast fashion.</p>
+        </div>
+        <div class="value-item">
+            <h3>Modern Heritage</h3>
+            <p>Vintage aesthetics reworked for the streets of today.</p>
+        </div>
+    </div>
+
+    <div class="back-link-wrap">
+        <a href="index.html" class="back-link">Back to Home</a>
+    </div>
+
+    <footer>
+        <span class="footer-logo">LYKKE</span>
+        <span class="footer-slogan">More to Lykke</span>
+
+        <div class="footer-menu">
+            <a href="#" id="trackOrderBtn" target="_blank" rel="noopener">Track Your Order</a>
+
+            <div class="footer-contact-wrap">
+                <button type="button" id="footerContactBtn" onclick="toggleContactPopup(event)">Contact Us</button>
+                <div class="contact-popup" id="contactPopup">
+                    <span class="popup-label">Reach us on WhatsApp</span>
+                    <a href="#" id="contactPopupNumber1" target="_blank" rel="noopener">Sales &amp; Orders</a>
+                    <a href="#" id="contactPopupNumber2" target="_blank" rel="noopener">Customer Support</a>
+                </div>
+            </div>
+
+            <a href="about.html">About Us</a>
+        </div>
+
+        <div style="margin-bottom: 50px;">
+            <a href="https://instagram.com/yourhandle" target="_blank">Instagram</a>
+            <a href="#">TikTok</a>
+        </div>
+        <p style="font-size: 0.75rem; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-body);">&copy; 2026 LYKKE. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('open');
+            document.getElementById('menuOverlay').classList.toggle('open');
+        }
+
+        const WHATSAPP_NUMBER = "201006440815";
+        const WHATSAPP_NUMBER_SUPPORT = "201006440815"; // TODO: replace with your second WhatsApp number
+
+        const menuWaBtn = document.getElementById('menuWhatsappBtn');
+        if (menuWaBtn) {
+            const contactMessage = encodeURIComponent("Hi LYKKE, I have a question!");
+            menuWaBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${contactMessage}`;
+        }
+
+        const trackOrderBtn = document.getElementById('trackOrderBtn');
+        if (trackOrderBtn) {
+            const trackMessage = encodeURIComponent("Hi LYKKE, I'd like to track my order.");
+            trackOrderBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${trackMessage}`;
+        }
+
+        const popupNum1 = document.getElementById('contactPopupNumber1');
+        const popupNum2 = document.getElementById('contactPopupNumber2');
+        if (popupNum1 && popupNum2) {
+            const generalMessage = encodeURIComponent("Hi LYKKE, I have a question!");
+            popupNum1.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${generalMessage}`;
+            popupNum2.href = `https://wa.me/${WHATSAPP_NUMBER_SUPPORT}?text=${generalMessage}`;
+        }
+
+        function toggleContactPopup(e) {
+            e.stopPropagation();
+            document.getElementById('contactPopup').classList.toggle('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const popup = document.getElementById('contactPopup');
+            const btn = document.getElementById('footerContactBtn');
+            if (popup && popup.classList.contains('open') && !popup.contains(e.target) && e.target !== btn) {
+                popup.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>
